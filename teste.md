@@ -1,9 +1,16 @@
 # Descriçâo de sistemas
+
 ## teste
-|nome|pet||nome|pet|
-|----|---||----|---|
-|nome|pet||nome|pet|
-|----|---||----|---|
+-- teste
+
+## teste
 - teste
 
-:teste
+|nome|pet|
+|----|---|
+
+|nome|pet|
+|----|---|
+|----|---|
+
+
