@@ -20,15 +20,4 @@ Olá! 👋 Eu sou o Angel Rafael, um entusiasta de tecnologia e desenvolvedor fr
 - 🤖 Automações empresariais e suporte técnico em Python
 - 🌐 Projetos freelancer de criação de sistemas personalizados e aplicativos de controle de tráfego de produtos
 
-## Projetos Destacados
-- 🎮 Desenvolvimento de 5 jogos, sendo 3 disponíveis na plataforma gratuita da GX Games
-- 🌐 Criação de um aplicativo de controle de estoque para desktop
-- 🤖 Automação de planilhas, buscas em sites e sistemas empresariais
-
-## Contato
-- 📧 E-mail: rafaelprojmgz@gmail.com
-- 📱 Telefone: 66 9 9995 1020
-- 💼 LinkedIn: linkedin.com/in/angel-rafael-souza-da-silva-a5ba2521a
-- 🎥 Canal no YouTube: RafaelSilva-gm2gb
-  
 Estou sempre em busca de desafios interessantes e oportunidades de colaboração. Sinta-se à vontade para entrar em contato comigo para discutir projetos ou oportunidades de trabalho!
