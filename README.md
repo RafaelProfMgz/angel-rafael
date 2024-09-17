@@ -64,8 +64,6 @@ Descrição do cenário onde o sistema deverá funcionar.
 
 # 3. Visão geral do sistema
 
-Descrição do sistema e suas relações.
-
 # 4. Diagrama ER
 
 # 5. Diagrama de classe
