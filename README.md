@@ -50,16 +50,16 @@ Descrição do cenário onde o sistema deverá funcionar.
 18. O resultado da entrevista deve ir para um formulário. 
 19. O veterinário deverá examinar o animal e anotar em prontuário(ficha) suas observações. 
 20. Dependendo da situação do animal este receberá uma receita.
-21. A clínica vende rações para os animais de raças: felinas, canídeas, aves, roedores.
-22. A clínica fornece atendimento para creche de animais, onde deve ser informado horário e custo.
-23. A clínica vende roupas e acessórios para animais.
-24. A clínica vende produtos para banho para os animais.
-25. A clínica vende roupas para animais.
-26. A clínica fica localizada no centro.
-27. A clínica deve cuidar do animal ate o dono buscar.
-28. A clínica assumi responsabilidade pelos animais dentro do seu estabelecimento.
+21. A Petshop vende rações para os animais de raças: felinas, canídeas, aves, roedores.
+22. A Petshop fornece atendimento para creche de animais, onde deve ser informado horário e custo.
+23. A Petshop vende roupas e acessórios para animais.
+24. A Petshop vende produtos para banho para os animais.
+25. A Petshop vende roupas para animais.
+26. A Petshop fica localizada no centro.
+27. A Petshop deve cuidar do animal ate o dono buscar.
+28. A Petshop assumi responsabilidade pelos animais dentro do seu estabelecimento.
 29. O animal ficara em local adequado até o retorno do responsável.
-30. WIP(work in pogress)
+30. O valor total.
 
 
 # 3. Visão geral do sistema
