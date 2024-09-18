@@ -64,6 +64,9 @@ Descrição do cenário onde o sistema deverá funcionar.
 
 # 3. Visão geral do sistema
 
+
+# 4. Diagrama ER
+
 ```mermaid
 erDiagram
     CLIENTE {
@@ -154,7 +157,6 @@ erDiagram
     PRODUTO ||--o{ ANIMAL : "utilizado_por"
     CLIENTE ||--o{ AGENDA : "faz_reserva"
 ```
-# 4. Diagrama ER
 
 # 5. Diagrama de classe
 
