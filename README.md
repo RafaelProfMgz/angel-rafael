@@ -289,3 +289,189 @@ classDiagram
 # 15. Glossário
 
 # 16. Script SQL
+
+# 16.1. Comando Create table
+
+```mermaid
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+);
+
+CREATE TABLE Animal (
+    id_animal INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie ENUM('gato', 'cachorro') NOT NULL,
+    raca VARCHAR(100),
+    data_nascimento DATE,
+    RFID VARCHAR(50) NOT NULL,
+    condicao_chegada TEXT,
+    tipo_racao VARCHAR(100),
+    habitos TEXT,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Veterinario (
+    id_veterinario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especialidade VARCHAR(100)
+);
+
+
+CREATE TABLE Atendente (
+    id_atendente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+
+CREATE TABLE Agenda (
+    id_agenda INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    disponivel BOOLEAN DEFAULT TRUE,
+    id_veterinario INT,
+    FOREIGN KEY (id_veterinario) REFERENCES Veterinario(id_veterinario) ON DELETE SET NULL
+);
+
+
+CREATE TABLE Atendimento (
+    id_atendimento INT AUTO_INCREMENT PRIMARY KEY,
+    data_atendimento DATE NOT NULL,
+    tipo VARCHAR(100),
+    descricao TEXT,
+    valor_total DECIMAL(10, 2),
+    id_animal INT,
+    id_veterinario INT,
+    id_agenda INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_veterinario) REFERENCES Veterinario(id_veterinario) ON DELETE SET NULL,
+    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE SET NULL
+);
+
+
+CREATE TABLE Prontuario (
+    id_prontuario INT AUTO_INCREMENT PRIMARY KEY,
+    observacoes TEXT,
+    receita TEXT,
+    id_animal INT,
+    id_atendimento INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_atendimento) REFERENCES Atendimento(id_atendimento) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    tipo ENUM('racao', 'acessorio', 'roupa', 'banho') NOT NULL,
+    preco DECIMAL(10, 2)
+);
+
+
+CREATE TABLE Venda (
+    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+    data_venda DATE NOT NULL,
+    id_cliente INT,
+    id_produto INT,
+    quantidade INT,
+    valor_total DECIMAL(10, 2),
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente) ON DELETE CASCADE,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto) ON DELETE CASCADE
+);
+
+CREATE TABLE Creche (
+    id_creche INT AUTO_INCREMENT PRIMARY KEY,
+    horario TIME NOT NULL,
+    custo DECIMAL(10, 2) NOT NULL,
+    id_animal INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Fila_Espera (
+    id_fila INT AUTO_INCREMENT PRIMARY KEY,
+    id_animal INT,
+    id_agenda INT,
+    status ENUM('aguardando', 'em_atendimento', 'finalizado') DEFAULT 'aguardando',
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE CASCADE
+);
+```
+
+# 16.2. Comando INSERT gerando dados ficticios
+
+```mermaid
+INSERT INTO Cliente (nome, telefone, email) VALUES
+('João Silva', '123456789', 'joao.silva@email.com'),
+('Maria Oliveira', '987654321', 'maria.oliveira@email.com'),
+('Ana Souza', '555123456', 'ana.souza@email.com'),
+('Pedro Lima', '999888777', 'pedro.lima@email.com');
+
+
+INSERT INTO Animal (nome, especie, raca, data_nascimento, RFID, condicao_chegada, tipo_racao, habitos, id_cliente) VALUES
+('Rex', 'cachorro', 'Pastor Alemão', '2018-06-12', 'RFID123456', 'Animal limpo e saudável', 'Royal Canin', 'Corre todos os dias no parque', 1),
+('Luna', 'gato', 'Persa', '2020-04-25', 'RFID654321', 'Animal com sinais de estresse', 'Whiskas', 'Dorminhoca e caseira', 2),
+('Bob', 'cachorro', 'Bulldog', '2019-11-05', 'RFID987654', 'Animal com tosse leve', 'Pedigree', 'Brincalhão e sociável', 3),
+('Mia', 'gato', 'Siamês', '2021-02-18', 'RFID112233', 'Animal com perda de pelos', 'Golden', 'Adora subir em árvores', 4);
+
+
+INSERT INTO Veterinario (nome, especialidade) VALUES
+('Dr. Carlos Almeida', 'Clínico Geral'),
+('Dra. Beatriz Mendes', 'Dermatologia Animal'),
+('Dr. Felipe Santos', 'Ortopedia Animal');
+
+INSERT INTO Atendente (nome) VALUES
+('Fernanda Souza'),
+('Ricardo Lopes'),
+('Carla Ferreira');
+
+
+INSERT INTO Agenda (data, hora, disponivel, id_veterinario) VALUES
+('2024-09-20', '10:00:00', TRUE, 1),
+('2024-09-20', '11:00:00', TRUE, 2),
+('2024-09-21', '09:00:00', TRUE, 3),
+('2024-09-21', '10:30:00', TRUE, 1);
+
+
+INSERT INTO Atendimento (data_atendimento, tipo, descricao, valor_total, id_animal, id_veterinario, id_agenda) VALUES
+('2024-09-20', 'Consulta', 'Consulta geral e exame clínico', 200.00, 1, 1, 1),
+('2024-09-20', 'Consulta', 'Consulta dermatológica', 250.00, 2, 2, 2),
+('2024-09-21', 'Exame Ortopédico', 'Exame ortopédico completo', 300.00, 3, 3, 3);
+
+
+INSERT INTO Prontuario (observacoes, receita, id_animal, id_atendimento) VALUES
+('Animal saudável, sem anomalias visíveis.', 'Manter dieta habitual', 1, 1),
+('Animal com dermatite leve, recomendar shampoo específico.', 'Shampoo dermatológico 2x por semana', 2, 2),
+('Animal com problema articular, indicar acompanhamento', 'Suplemento de articulação 1x por dia', 3, 3);
+
+
+INSERT INTO Produto (nome, tipo, preco) VALUES
+('Ração Royal Canin', 'racao', 120.00),
+('Coleira de Couro', 'acessorio', 40.00),
+('Camiseta para cães', 'roupa', 30.00),
+('Shampoo para Cães', 'banho', 25.00);
+
+
+INSERT INTO Venda (data_venda, id_cliente, id_produto, quantidade, valor_total) VALUES
+('2024-09-18', 1, 1, 1, 120.00),
+('2024-09-18', 2, 2, 1, 40.00),
+('2024-09-19', 3, 3, 2, 60.00),
+('2024-09-19', 4, 4, 1, 25.00);
+
+
+INSERT INTO Creche (horario, custo, id_animal) VALUES
+('08:00:00', 150.00, 1),
+('09:00:00', 150.00, 2),
+('10:00:00', 150.00, 3),
+('11:00:00', 150.00, 4);
+
+
+INSERT INTO Fila_Espera (id_animal, id_agenda, status) VALUES
+(1, 1, 'aguardando'),
+(2, 2, 'aguardando'),
+(3, 3, 'em_atendimento');
+```
