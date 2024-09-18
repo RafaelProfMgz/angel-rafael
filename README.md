@@ -9,7 +9,7 @@ Repositório para engenhario de software modelagem de dados.
 - [4. Diagrama ER](#4-diagrama-er)
 - [5. Diagrama de classe](#5-diagrama-de-classe)
 - [6. Casos de uso](#6-casos-de-uso)
-- [6.1 Histórias de usuário](#61-histórias-de-usuário)
+  - [6.1 Histórias de usuário](#61-histórias-de-usuário)
 - [7. Diagrama de componentes](#7-diagrama-de-componentes)
 - [8. Diagrama de implantação](#8-diagrama-de-implantação)
 - [9. Protótipo de telas](#9-protótipo-de-telas)
