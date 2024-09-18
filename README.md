@@ -165,6 +165,107 @@ erDiagram
 
 # 5. Diagrama de classe
 
+```mermaid
+classDiagram
+    class Cliente {
+        +int id_cliente
+        +string nome
+        +string telefone
+        +string email
+        +void cadastrarAnimal()
+        +void informarCondicoesChegada()
+        +void informarTipoRacao()
+        +void informarHabitos()
+    }
+
+    class Animal {
+        +int id_animal
+        +string nome
+        +string especie
+        +string raca
+        +date data_nascimento
+        +string RFID
+        +string condicao_chegada
+        +string tipo_racao
+        +string habitos
+        +void receberFicha()
+        +void receberProntuario()
+    }
+
+    class Veterinario {
+        +int id_veterinario
+        +string nome
+        +string especialidade
+        +void realizarEntrevista()
+        +void examinarAnimal()
+        +void gerarReceita()
+    }
+
+    class Atendente {
+        +int id_atendente
+        +string nome
+        +void verificarAgendaDisponivel()
+        +void colocarNaFilaEspera()
+        +void encaminharParaVeterinario()
+    }
+
+    class Agenda {
+        +int id_agenda
+        +date data
+        +time hora
+        +bool disponivel
+    }
+
+    class Atendimento {
+        +int id_atendimento
+        +date data_atendimento
+        +string tipo
+        +string descricao
+        +float valor_total
+        +void gerarReceita()
+    }
+
+    class Prontuario {
+        +int id_prontuario
+        +string observacoes
+        +string receita
+        +void preencherObservacoes()
+        +void emitirReceita()
+    }
+
+    class Produto {
+        +int id_produto
+        +string nome
+        +string tipo
+        +float preco
+    }
+
+    class Venda {
+        +int id_venda
+        +date data_venda
+        +int quantidade
+        +float valor_total
+    }
+
+    class Creche {
+        +int id_creche
+        +time horario
+        +float custo
+    }
+
+    Cliente "1" -- "n" Animal : possui >
+    Cliente "1" -- "n" Venda : realiza >
+    Animal "1" -- "n" Atendimento : é atendido em >
+    Veterinario "1" -- "n" Atendimento : realiza >
+    Veterinario "1" -- "n" Animal : atende >
+    Atendente "1" -- "n" Atendimento : gerencia >
+    Atendimento "1" -- "1" Prontuario : gera >
+    Agenda "1" -- "n" Atendimento : organiza >
+    Animal "1" -- "n" Creche : permanece >
+    Cliente "1" -- "n" Creche : utiliza >
+    Produto "1" -- "n" Venda : é vendido em >
+```
+
 # 6. Casos de uso
 
 # 6.1 Histórias de usuário
