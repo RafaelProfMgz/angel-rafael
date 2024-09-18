@@ -9,3 +9,4 @@ NC: Only noncommercial use of your work is permitted.
 Noncommercial means not primarily intended for or directed towards commercial advantage or monetary compensation.
 
 ND: No derivatives or adaptations of your work are permitted.
+=======
