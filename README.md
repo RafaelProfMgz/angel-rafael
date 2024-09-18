@@ -289,3 +289,115 @@ classDiagram
 # 15. Glossário
 
 # 16. Script SQL
+
+-- Criação da tabela de Clientes
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+);
+
+-- Criação da tabela de Animais
+CREATE TABLE Animal (
+    id_animal INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie ENUM('gato', 'cachorro') NOT NULL,
+    raca VARCHAR(100),
+    data_nascimento DATE,
+    RFID VARCHAR(50) NOT NULL,
+    condicao_chegada TEXT,
+    tipo_racao VARCHAR(100),
+    habitos TEXT,
+    id_cliente INT,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente) ON DELETE CASCADE
+);
+
+-- Criação da tabela de Veterinários
+CREATE TABLE Veterinario (
+    id_veterinario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especialidade VARCHAR(100)
+);
+
+-- Criação da tabela de Atendentes
+CREATE TABLE Atendente (
+    id_atendente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+-- Criação da tabela de Agendas
+CREATE TABLE Agenda (
+    id_agenda INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    disponivel BOOLEAN DEFAULT TRUE,
+    id_veterinario INT,
+    FOREIGN KEY (id_veterinario) REFERENCES Veterinario(id_veterinario) ON DELETE SET NULL
+);
+
+-- Criação da tabela de Atendimentos
+CREATE TABLE Atendimento (
+    id_atendimento INT AUTO_INCREMENT PRIMARY KEY,
+    data_atendimento DATE NOT NULL,
+    tipo VARCHAR(100),
+    descricao TEXT,
+    valor_total DECIMAL(10, 2),
+    id_animal INT,
+    id_veterinario INT,
+    id_agenda INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_veterinario) REFERENCES Veterinario(id_veterinario) ON DELETE SET NULL,
+    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE SET NULL
+);
+
+-- Criação da tabela de Prontuários
+CREATE TABLE Prontuario (
+    id_prontuario INT AUTO_INCREMENT PRIMARY KEY,
+    observacoes TEXT,
+    receita TEXT,
+    id_animal INT,
+    id_atendimento INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_atendimento) REFERENCES Atendimento(id_atendimento) ON DELETE CASCADE
+);
+
+-- Criação da tabela de Produtos (ex: rações, roupas, acessórios)
+CREATE TABLE Produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    tipo ENUM('racao', 'acessorio', 'roupa', 'banho') NOT NULL,
+    preco DECIMAL(10, 2)
+);
+
+-- Criação da tabela de Vendas de Produtos
+CREATE TABLE Venda (
+    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+    data_venda DATE NOT NULL,
+    id_cliente INT,
+    id_produto INT,
+    quantidade INT,
+    valor_total DECIMAL(10, 2),
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente) ON DELETE CASCADE,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto) ON DELETE CASCADE
+);
+
+-- Criação da tabela de Creche para animais
+CREATE TABLE Creche (
+    id_creche INT AUTO_INCREMENT PRIMARY KEY,
+    horario TIME NOT NULL,
+    custo DECIMAL(10, 2) NOT NULL,
+    id_animal INT,
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE
+);
+
+-- Tabela de fila de espera para atendimento
+CREATE TABLE Fila_Espera (
+    id_fila INT AUTO_INCREMENT PRIMARY KEY,
+    id_animal INT,
+    id_agenda INT,
+    status ENUM('aguardando', 'em_atendimento', 'finalizado') DEFAULT 'aguardando',
+    FOREIGN KEY (id_animal) REFERENCES Animal(id_animal) ON DELETE CASCADE,
+    FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE CASCADE
+);
+
