@@ -64,6 +64,96 @@ Descrição do cenário onde o sistema deverá funcionar.
 
 # 3. Visão geral do sistema
 
+```mermaid
+erDiagram
+    CLIENTE {
+        int id_cliente
+        string nome
+        string telefone
+        string email
+    }
+
+    ANIMAL {
+        int id_animal
+        string nome
+        string especie
+        string raca
+        date data_nascimento
+        string RFID
+        string condicao_chegada
+        string tipo_racao
+        string habitos
+    }
+
+    VETERINARIO {
+        int id_veterinario
+        string nome
+        string especialidade
+    }
+
+    ATENDENTE {
+        int id_atendente
+        string nome
+    }
+
+    AGENDA {
+        int id_agenda
+        date data
+        time hora
+        bool disponivel
+    }
+
+    ATENDIMENTO {
+        int id_atendimento
+        date data_atendimento
+        string tipo
+        string descricao
+        float valor_total
+    }
+
+    PRONTUARIO {
+        int id_prontuario
+        string observacoes
+        string receita
+    }
+
+    PRODUTO {
+        int id_produto
+        string nome
+        string tipo
+        float preco
+    }
+
+    CRECHE {
+        int id_creche
+        date horario
+        float custo
+    }
+
+    CLIENTE_ANIMAL {
+        int id_cliente
+        int id_animal
+    }
+
+    CLIENTE_ANIMAL ||--o{ CLIENTE : "pertence"
+    CLIENTE_ANIMAL ||--o{ ANIMAL : "tem"
+
+    ANIMAL ||--o{ VETERINARIO : "atendido_por"
+    VETERINARIO ||--o{ AGENDA : "disponivel_em"
+    ATENDIMENTO ||--o{ ANIMAL : "realizado_em"
+    ATENDIMENTO ||--o{ VETERINARIO : "feito_por"
+    ATENDIMENTO ||--o{ AGENDA : "agendado_para"
+    ATENDIMENTO ||--|{ PRONTUARIO : "gera"
+
+    CLIENTE ||--o{ ATENDENTE : "atendido_por"
+    ATENDENTE ||--o{ AGENDA : "organiza"
+    PRODUTO ||--o{ CLIENTE : "comprado_por"
+    CLIENTE ||--o{ CRECHE : "utiliza"
+
+    CRECHE ||--o{ ANIMAL : "recebe_cuidado"
+    PRODUTO ||--o{ ANIMAL : "utilizado_por"
+    CLIENTE ||--o{ AGENDA : "faz_reserva"
+```
 # 4. Diagrama ER
 
 # 5. Diagrama de classe
