@@ -292,7 +292,8 @@ classDiagram
 
 # 16.1. Comando Create table
 
-```mermaid
+
+```sql
 CREATE TABLE Cliente (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -404,7 +405,8 @@ CREATE TABLE Fila_Espera (
 
 # 16.2. Comando INSERT gerando dados ficticios
 
-```mermaid
+
+```sql
 INSERT INTO Cliente (nome, telefone, email) VALUES
 ('João Silva', '123456789', 'joao.silva@email.com'),
 ('Maria Oliveira', '987654321', 'maria.oliveira@email.com'),
