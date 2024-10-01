@@ -1,5 +1,5 @@
-
 # Angel Rafael Souza da Silva
+
 Repositório para engenhario de software modelagem de dados.
 
 - [Angel Rafael / Souza \_AXO](#Angel_axo)
@@ -31,23 +31,23 @@ Descrição do cenário onde o sistema deverá funcionar.
 
 1. Marcar animais com RFID.
 2. Realizar procedimento de vacinação de banho e tosa.
-3. Uma clínica veterinária atende apenas os animais: gatos e cachorros. 
+3. Uma clínica veterinária atende apenas os animais: gatos e cachorros.
 4. Os clientes devem fazer um cadastro de si e dos animais.
 5. Os clientes devem informar as condições nas quais os animais chegam.
-6. Os clientes devem informar o tipo de ração que o animal come. 
-7. O cliente deve informar hábitos do animal. 
-8. Para cada animal é possível que mais de um veterinário o atenda. 
-9. Os animais podem chegar e serem atendidos de acordo com uma agenda do dia. 
-10. Cada animal atendido receberá uma ficha e um prontuário. 
-11. Outros dono podem querer marcar horários de atendimento futuro. 
-12. O atendimento gera uma receita para o animal. 
-13. Quando um cliente chega na clínica veterinária ele é atendido por um atendente. 
-14. O atendente deve verificar se existe agenda disponível com um veterinário. 
-15. O atendente deve colocar o cliente e seu animal na fila de espera, se for o caso. 
-16. O atendente deve levar o cliente e o animal até o veterinário. 
-17. O veterinário deve realizar uma entrevista com o dono do animal. 
-18. O resultado da entrevista deve ir para um formulário. 
-19. O veterinário deverá examinar o animal e anotar em prontuário(ficha) suas observações. 
+6. Os clientes devem informar o tipo de ração que o animal come.
+7. O cliente deve informar hábitos do animal.
+8. Para cada animal é possível que mais de um veterinário o atenda.
+9. Os animais podem chegar e serem atendidos de acordo com uma agenda do dia.
+10. Cada animal atendido receberá uma ficha e um prontuário.
+11. Outros dono podem querer marcar horários de atendimento futuro.
+12. O atendimento gera uma receita para o animal.
+13. Quando um cliente chega na clínica veterinária ele é atendido por um atendente.
+14. O atendente deve verificar se existe agenda disponível com um veterinário.
+15. O atendente deve colocar o cliente e seu animal na fila de espera, se for o caso.
+16. O atendente deve levar o cliente e o animal até o veterinário.
+17. O veterinário deve realizar uma entrevista com o dono do animal.
+18. O resultado da entrevista deve ir para um formulário.
+19. O veterinário deverá examinar o animal e anotar em prontuário(ficha) suas observações.
 20. Dependendo da situação do animal este receberá uma receita.
 21. A Petshop vende rações para os animais de raças: felinas, canídeas, aves, roedores.
 22. A Petshop fornece atendimento para creche de animais, onde deve ser informado horário e custo.
@@ -268,7 +268,254 @@ classDiagram
 
 # 6. Casos de uso
 
-# 6.1 Histórias de usuário
+```mermaid
+graph TD;
+    subgraph Sistema Veterinário
+        Cliente --> |Faz cadastro| CadastroCliente
+        Cliente --> |Informa condições do animal| CondicoesAnimal
+        Cliente --> |Informa tipo de ração| TipoRacao
+        Cliente --> |Informa hábitos do animal| HabitosAnimal
+        Cliente --> |Marca horário para atendimento| MarcarHorario
+        Cliente --> |Chega na clínica| ChegadaClinica
+        Cliente --> |Realiza pagamento| RealizarPagamento
+        Atendente --> |Verifica agenda disponível| VerificarAgenda
+        Atendente --> |Coloca na fila de espera| FilaEspera
+        Atendente --> |Leva ao veterinário| LevarVeterinario
+        Veterinario --> |Realiza entrevista com dono| EntrevistaDono
+        Veterinario --> |Examina animal| ExaminarAnimal
+        Veterinario --> |Registra observações no prontuário| Prontuario
+        Veterinario --> |Emite receita| ReceitaAnimal
+        Veterinario --> |Preenche ficha do animal| FichaAnimal
+        Veterinario --> |Consulta histórico do animal| HistoricoAnimal
+        Veterinario --> |Consulta condição de saúde| CondicaoSaude
+        Veterinario --> |Consulta hábitos do animal| HabitosVeterinario
+        Petshop --> |Vende rações| VenderRacao
+        Petshop --> |Vende roupas e acessórios| VenderRoupasAcessorios
+        Petshop --> |Vende produtos para banho| VenderProdutosBanho
+        Petshop --> |Fornece atendimento para creche| AtendimentoCreche
+        Petshop --> |Cuidar do animal| CuidarAnimal
+        Petshop --> |Assume responsabilidade| ResponsabilidadePetshop
+        Cliente --> |Informa horário e custo da creche| HorarioCustoCreche
+        Cliente --> |Deixa o animal para cuidados| DeixarAnimalCuidados
+        Cliente --> |Consulta disponibilidade de produtos| ConsultarProdutos
+        Cliente --> |Marca atendimento futuro| MarcarAtendimentoFuturo
+        Cliente --> |Recebe notificação de retorno| NotificacaoRetorno
+        Cliente --> |Avalia o atendimento| AvaliarAtendimento
+        Atendente --> |Gerencia agendamentos| GerenciarAgendamentos
+        Veterinario --> |Avalia prontuário| AvaliarProntuario
+        Cliente --> |Recebe receita| ReceberReceita
+    end
+```
+
+# 6.1 Casos de uso
+
+@startuml
+actor Cliente
+actor Atendente
+actor Veterinario
+actor Petshop
+
+usecase "Cadastrar Cliente" as UC1
+usecase "Cadastrar Animal" as UC2
+usecase "Informar Condições de Chegada" as UC3
+usecase "Informar Tipo de Ração" as UC4
+usecase "Informar Hábitos" as UC5
+usecase "Marcar Animal com RFID" as UC6
+usecase "Atendimento Veterinário" as UC7
+usecase "Realizar Procedimento de Banho e Tosa" as UC8
+usecase "Realizar Entrevista com Dono" as UC9
+usecase "Examinar Animal" as UC10
+usecase "Gerar Prontuário" as UC11
+usecase "Gerar Receita" as UC12
+usecase "Verificar Agenda Disponível" as UC13
+usecase "Colocar Cliente na Fila de Espera" as UC14
+usecase "Levar Animal para o Veterinário" as UC15
+usecase "Vender Rações" as UC16
+usecase "Vender Roupas e Acessórios" as UC17
+usecase "Vender Produtos para Banho" as UC18
+usecase "Cuidar do Animal até Busca" as UC19
+usecase "Oferecer Serviço de Creche" as UC20
+
+Cliente --> UC1
+Cliente --> UC2
+Cliente --> UC3
+Cliente --> UC4
+Cliente --> UC5
+Cliente --> UC8
+Cliente --> UC9
+
+Atendente --> UC13
+Atendente --> UC14
+Atendente --> UC15
+
+Veterinario --> UC9
+Veterinario --> UC10
+Veterinario --> UC11
+Veterinario --> UC12
+
+Petshop --> UC6
+Petshop --> UC16
+Petshop --> UC17
+Petshop --> UC18
+Petshop --> UC19
+Petshop --> UC20
+
+UC9 --> UC11
+UC10 --> UC12
+@enduml
+
+# 6.2 Histórias de usuário
+
+1. Cadastro de Clientes e Animais
+   Como um cliente,
+   Eu quero realizar o cadastro dos meus dados pessoais e dos meus animais,
+   Para que a clínica veterinária possa ter minhas informações e as dos meus pets registradas.
+
+2. Informar Condições e Hábitos do Animal
+   Como um cliente,
+   Eu quero informar as condições de saúde e os hábitos alimentares e comportamentais dos meus animais,
+   Para que o veterinário e a clínica possam prestar o atendimento adequado.
+
+3. Agendar Atendimento Veterinário
+   Como um cliente,
+   Eu quero agendar o atendimento de meus animais com um veterinário,
+   Para garantir que eles recebam os cuidados necessários no horário adequado.
+
+4. Atendimento por Múltiplos Veterinários
+   Como um cliente,
+   Eu quero que meus animais possam ser atendidos por mais de um veterinário,
+   Para que cada profissional cuide de diferentes necessidades do meu pet, se necessário.
+
+5. Receber Ficha e Prontuário do Animal
+   Como um veterinário,
+   Eu quero criar uma ficha e um prontuário para cada animal atendido,
+   Para registrar o histórico de saúde e cuidados realizados no animal.
+
+6. Fila de Espera para Atendimento Veterinário
+   Como um atendente,
+   Eu quero verificar a disponibilidade de agenda com os veterinários e, caso necessário,
+   Colocar o cliente e seu animal na fila de espera,
+   Para garantir que todos os animais sejam atendidos de maneira organizada.
+
+7. Realizar Entrevista Inicial com o Dono
+   Como um veterinário,
+   Eu quero realizar uma entrevista inicial com o dono do animal,
+   Para entender o motivo da consulta e coletar informações essenciais para o atendimento.
+
+8. Anotar Observações no Prontuário
+   Como um veterinário,
+   Eu quero anotar no prontuário todas as observações e resultados do exame do animal,
+   Para registrar o estado de saúde e possíveis tratamentos.
+
+9. Gerar Receita para Tratamento
+   Como um veterinário,
+   Eu quero emitir uma receita de medicamentos ou tratamentos para o animal,
+   Para que o dono possa seguir com o tratamento adequado.
+
+10. Serviço de Creche para Animais
+    Como um cliente,
+    Eu quero deixar meu animal na creche da petshop,
+    Para que ele seja cuidado enquanto estou ausente, com horário de entrada e custo informados.
+
+11. Vender Rações e Produtos para Animais
+    Como um cliente,
+    Eu quero comprar ração, roupas e acessórios para meu animal,
+    Para que ele tenha alimentação e conforto adequados.
+
+12. Cuidar dos Animais na Petshop
+    Como um cliente,
+    Eu quero que a petshop cuide do meu animal até que eu o busque,
+    Para que ele fique seguro e confortável no estabelecimento.
+
+13. Garantir Local Adequado para Animais na Petshop
+    Como o proprietário da petshop,
+    Eu quero garantir que todos os animais fiquem em locais adequados até o retorno de seus donos,
+    Para oferecer um ambiente seguro e confortável.
+
+14. Vender Produtos de Higiene para Animais
+    Como um cliente,
+    Eu quero comprar produtos de higiene, como shampoos e acessórios para banho,
+    Para manter a limpeza e a saúde do meu animal.
+
+15. Valor Total dos Serviços e Produtos
+    Como um cliente,
+    Eu quero ser informado do valor total dos serviços e produtos adquiridos,
+    Para que eu saiba o custo completo ao final da visita.
+
+16. Responsabilidade pelos Animais no Estabelecimento+
+    Como o proprietário da petshop,
+    Eu quero assumir a responsabilidade pelos animais enquanto estiverem em meu estabelecimento,
+    Para garantir que os donos confiem na segurança e cuidado que oferecemos.
+
+17. Atendimento por Agendamento ou Ordem de Chegada
+    Como um cliente,
+    Eu quero que meu animal seja atendido na clínica veterinária conforme o agendamento ou pela ordem de chegada,
+    Para que ele receba os cuidados no momento certo.
+
+18. Marcar Atendimentos Futuros
+    Como um cliente,
+    Eu quero agendar atendimentos veterinários para datas futuras,
+    Para garantir que meu animal receba acompanhamento contínuo e planejado.
+
+19. Atendimento ao Chegar na Clínica
+    Como um cliente,
+    Eu quero ser atendido por um atendente assim que chego na clínica veterinária,
+    Para que meu animal seja prontamente direcionado ao veterinário.
+
+20. Verificar Agenda de Veterinários Disponíveis
+    Como um atendente,
+    Eu quero verificar a agenda dos veterinários disponíveis,
+    Para agendar ou organizar o atendimento dos animais de acordo com a disponibilidade.
+
+21. Levar Cliente e Animal ao Veterinário
+    Como um atendente,
+    Eu quero levar o cliente e seu animal até o veterinário responsável,
+    Para que o atendimento aconteça de forma organizada e sem atrasos.
+
+22. Realizar Marcação de Animais com RFID
+    Como um veterinário,
+    Eu quero marcar os animais com RFID,
+    Para facilitar a identificação e rastreamento de cada pet atendido.
+
+23. Realizar Procedimentos de Banho e Tosa
+    Como um cliente,
+    Eu quero que a clínica veterinária ou petshop realize o serviço de banho e tosa no meu animal,
+    Para garantir que ele esteja sempre limpo e bem cuidado.
+
+24. Vender Rações Específicas para Cada Tipo de Animal
+    Como um cliente,
+    Eu quero que a petshop tenha rações específicas para cada tipo de animal (felinos, canídeos, aves, roedores),
+    Para que eu possa adquirir o alimento mais adequado ao meu pet.
+
+25. Disponibilizar Receitas no Sistema
+    Como um cliente,
+    Eu quero que as receitas veterinárias estejam disponíveis no sistema da clínica,
+    Para poder acessar a qualquer momento o tratamento prescrito para meu animal.
+
+26. Entregar Animais Após Banho, Tosa ou Creche
+    Como um cliente,
+    Eu quero buscar meu animal após a realização dos serviços de banho, tosa ou creche,
+    Para que ele esteja pronto para ir para casa no horário combinado.
+
+27. Cadastro de Produtos e Serviços
+    Como um atendente da petshop,
+    Eu quero cadastrar produtos como ração, roupas, acessórios e serviços como creche, banho e tosa,
+    Para oferecer uma variedade de opções aos clientes da loja.
+
+28. Emitir Relatórios de Atendimentos e Vendas
+    Como o proprietário da petshop,
+    Eu quero gerar relatórios sobre os atendimentos realizados e os produtos vendidos,
+    Para ter controle sobre o faturamento e a eficiência dos serviços prestados.
+
+29. Cálculo do Custo Total dos Serviços
+    Como um cliente,
+    Eu quero que o sistema me mostre o custo total dos serviços prestados (creche, banho, tosa, consulta veterinária),
+    Para que eu saiba quanto precisarei pagar no final.
+
+30. Garantir a Segurança dos Animais na Creche
+    Como o proprietário da petshop,
+    Eu quero garantir a segurança dos animais que ficam na creche,
+    Para que os donos sintam confiança em deixar seus pets no local durante o dia.
 
 # 7. Diagrama de componentes
 
@@ -291,7 +538,6 @@ classDiagram
 # 16. Script SQL
 
 # 16.1. Comando Create table
-
 
 ```sql
 CREATE TABLE Cliente (
@@ -404,7 +650,6 @@ CREATE TABLE Fila_Espera (
 ```
 
 # 16.2. Comando INSERT gerando dados ficticios
-
 
 ```sql
 INSERT INTO Cliente (nome, telefone, email) VALUES
