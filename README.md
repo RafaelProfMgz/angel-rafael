@@ -522,6 +522,13 @@ UC10 --> UC12
 # 8. Diagrama de implantação
 
 # 9. Protótipo de telas
+![image](https://github.com/user-attachments/assets/0ba60957-ac0f-4e09-aa97-8deac5cc5e0f)
+
+agenda: ![image](https://github.com/user-attachments/assets/b55ebb24-25ab-48b7-80ef-4ed4699830aa)
+
+dashboard: ![image](https://github.com/user-attachments/assets/8c7e68d6-3484-4b95-b1ba-77b1c4481744)
+
+graficos: ![image](https://github.com/user-attachments/assets/d1e105d6-6643-44ab-a5fe-628cfbc92c62)
 
 # 10. Diagrama de navegação de telas.
 
