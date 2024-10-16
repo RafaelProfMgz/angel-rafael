@@ -519,7 +519,91 @@ UC10 --> UC12
 
 # 7. Diagrama de componentes
 
+```mermaid
+%% Diagrama de Componentes da Clínica Veterinária e Petshop
+componentDiagram
+    %% Componentes da Clínica Veterinária
+    component Cliente
+    component Animal
+    component Cadastro {
+        - Cliente informa dados pessoais
+        - Cliente cadastra o animal
+        - Cliente informa hábitos e condições
+        - Cliente informa tipo de ração
+    }
+    component Atendimento {
+        - Recepcionista agenda ou coloca em fila
+        - Veterinário realiza entrevista
+        - Veterinário realiza exame e preenche prontuário
+        - Atendimento gera receita
+    }
+    component Prontuário {
+        - Informações sobre o exame
+        - Observações do veterinário
+    }
+    component Receita {
+        - Medicamentos ou cuidados recomendados
+    }
+    component Agenda {
+        - Agendamentos diários
+        - Horários disponíveis para atendimento futuro
+    }
+
+    Cliente --> Cadastro : "Realiza cadastro"
+    Cliente --> Atendimento : "Solicita atendimento"
+    Atendimento --> Prontuário : "Preenche prontuário"
+    Atendimento --> Receita : "Gera receita"
+    Atendimento --> Agenda : "Consulta disponibilidade"
+    Prontuário --> Receita : "Gera receita"
+
+    %% Componentes da Petshop
+    component Loja {
+        - Venda de rações
+        - Venda de roupas e acessórios
+        - Venda de produtos de banho
+    }
+    component Creche {
+        - Horário de entrada e saída
+        - Custo de creche
+        - Animal fica sob cuidado da Petshop
+    }
+    component LocalAcolhimento {
+        - Animal é acomodado até o retorno do dono
+    }
+    
+    Loja --> Cliente : "Venda de produtos"
+    Creche --> Cliente : "Contratação de serviços"
+    LocalAcolhimento --> Creche : "Acolhimento dos animais"
+
+```
 # 8. Diagrama de implantação
+
+```mermaid
+%% Diagrama de Implantação da Clínica Veterinária e Petshop
+graph TD
+    subgraph Veterinária
+        Cliente1[Cliente] --> CadastroSistema[Cadastro de Cliente e Animal]
+        CadastroSistema --> SistemaAtendimento[Sistema de Atendimento]
+        SistemaAtendimento --> Veterinário1[Veterinário]
+        SistemaAtendimento --> FilaEspera[Fila de Espera]
+        Veterinário1 --> FichaAnimal[Ficha e Prontuário]
+        FichaAnimal --> ReceitaAnimal[Receita]
+    end
+
+    subgraph Petshop
+        Cliente2[Cliente] --> SistemaVenda[Sistema de Vendas]
+        SistemaVenda --> Racoes[Rações]
+        SistemaVenda --> Roupas[Roupas]
+        SistemaVenda --> BanhoProdutos[Produtos de Banho]
+        SistemaVenda --> Acessorios[Acessórios]
+        
+        SistemaVenda --> SistemaCreche[Sistema de Creche]
+        SistemaCreche --> AnimalAcolhido[Animal em Acolhimento]
+        AnimalAcolhido --> LocalAdequado[Local Adequado]
+    end
+
+    linkStyle default stroke-width:2px;
+```
 
 # 9. Protótipo de telas
 ![image](https://github.com/user-attachments/assets/0ba60957-ac0f-4e09-aa97-8deac5cc5e0f)
@@ -532,13 +616,149 @@ graficos: ![image](https://github.com/user-attachments/assets/d1e105d6-6643-44ab
 
 # 10. Diagrama de navegação de telas.
 
+```mermaid
+
+%% Diagrama de Navegação de Telas da Clínica Veterinária e Petshop
+graph TD
+    %% Tela Inicial
+    TelaInicial[Início] --> CadastroCliente[Tela de Cadastro de Cliente e Animal]
+    TelaInicial --> AgendaDia[Agenda do Dia]
+    TelaInicial --> ProdutosPetshop[Tela de Produtos da Petshop]
+
+    %% Cadastro de Cliente e Animal
+    CadastroCliente --> FormCadastro[Formulário de Cadastro]
+    FormCadastro --> ConfirmaCadastro[Confirmação de Cadastro]
+    ConfirmaCadastro --> TelaInicial
+
+    %% Agendamento de Atendimento
+    AgendaDia --> DetalhesAnimal[Detalhes do Animal]
+    DetalhesAnimal --> FilaEspera[Tela de Fila de Espera]
+    DetalhesAnimal --> AtendimentoVeterinario[Atendimento com Veterinário]
+    AtendimentoVeterinario --> Prontuario[Tela de Prontuário]
+    Prontuario --> Receita[Tela de Receita]
+    Receita --> ConfirmaAtendimento[Confirmação de Atendimento]
+    ConfirmaAtendimento --> AgendaDia
+
+    %% Produtos da Petshop
+    ProdutosPetshop --> ListaProdutos[Lista de Produtos]
+    ListaProdutos --> DetalheProduto[Detalhe do Produto]
+    DetalheProduto --> CarrinhoCompras[Carrinho de Compras]
+    CarrinhoCompras --> FinalizaCompra[Finalização de Compra]
+    FinalizaCompra --> ConfirmaCompra[Confirmação de Compra]
+    ConfirmaCompra --> TelaInicial
+
+    %% Creche e Acolhimento de Animais
+    TelaInicial --> CrecheAnimais[Tela de Creche de Animais]
+    CrecheAnimais --> FormularioCreche[Formulário de Agendamento de Creche]
+    FormularioCreche --> ConfirmaCreche[Confirmação de Creche]
+    ConfirmaCreche --> TelaInicial
+
+```
 # 11. Pilha tecnológica
+
+```mermaid
+%% Diagrama da Pilha Tecnológica da Clínica Veterinária e Petshop
+graph TD
+    subgraph Front-End
+        A1[HTML5] --> A2[CSS3]
+        A2 --> A3[JavaScript]
+        A3 --> A4[React.js / Angular / Vue.js]
+        A4 --> A5[Bootstrap / Tailwind CSS]
+    end
+
+    subgraph Back-End
+        B1[Node.js / Express.js]
+        B2[Python / Django / Flask]
+        B3[Java / Spring Boot]
+        B1 --> API1[RESTful APIs]
+        B1 --> API2[GraphQL (opcional)]
+        B2 --> B5[Autenticação: JWT / OAuth]
+        B3 --> B6[Socket.io (Real-time updates)]
+    end
+
+    subgraph Banco de Dados
+        C1[PostgreSQL / MySQL]
+        C2[MongoDB (NoSQL)]
+        C1 --> C3[ORM: Sequelize / TypeORM]
+        C2 --> C4[Mongoose]
+    end
+
+    subgraph Ferramentas Complementares
+        D1[Docker (Containerização)]
+        D2[Kubernetes (Orquestração de Containers)]
+        D3[CI/CD: Jenkins / GitHub Actions]
+        D4[Versionamento: Git / GitHub / GitLab]
+        D5[Nginx (Proxy/Server)]
+        D6[Monitoramento: Prometheus / Grafana]
+    end
+
+    subgraph Serviços Externos
+        E1[Stripe / PayPal (Pagamentos)]
+        E2[AWS S3 / Google Cloud Storage (Armazenamento de Imagens)]
+        E3[Twilio (Envio de SMS)]
+    end
+```
 
 # 12. Requisitos de sistema
 
-# 13. Considerações sobre segurança
+Um servidor de banco para hospedar seu banco de dados, um servidor de aplicação para rodar a sua aplicação, sistema opereacional, conectividade a rede,  servidores de aplicação: PHP
+
+
+# 13. Considerações sobre Segurança
+
+A segurança é um aspecto crucial para evitar perda de dados e vazamentos em um sistema de gestão, como o de uma clínica veterinária e petshop. Abaixo estão as práticas recomendadas para garantir a proteção do sistema e das informações sensíveis:
+
+## 1. Autenticação e Controle de Acesso
+- **Autenticação Forte**: Utilize autenticação multifatorial (MFA) para adicionar uma camada extra de segurança além de senhas, como tokens ou códigos enviados via SMS/Email.
+- **Política de Senhas**: Exija senhas fortes, com combinação de letras, números e símbolos, para reduzir o risco de acesso não autorizado.
+- **Controle de Acesso Baseado em Funções (RBAC)**: Limite o acesso a diferentes áreas do sistema com base nos papéis dos usuários. Por exemplo, apenas veterinários podem acessar prontuários, enquanto atendentes gerenciam a agenda.
+
+## 2. Criptografia de Dados
+- **Criptografia de Dados em Trânsito**: Use HTTPS para garantir que toda a comunicação entre cliente e servidor esteja criptografada.
+- **Criptografia de Dados em Repouso**: Criptografe dados sensíveis no banco de dados, como informações de clientes e prontuários dos animais, utilizando algoritmos seguros como AES-256.
+- **Proteção de Senhas**: Armazene senhas usando algoritmos de hashing fortes, como bcrypt ou argon2, e nunca as armazene em texto plano.
+
+## 3. Backups Regulares
+- **Backups Automatizados**: Configure backups automáticos e regulares dos dados para evitar perda de informações devido a falhas ou ataques.
+- **Backup Off-Site**: Armazene cópias de segurança em locais fora do ambiente principal, como serviços de nuvem (AWS S3, Google Cloud), para garantir disponibilidade em caso de desastres físicos.
+- **Criptografia dos Backups**: Certifique-se de que os backups também estejam criptografados para evitar acessos indevidos.
+
+## 4. Monitoramento e Auditoria
+- **Monitoramento de Acessos**: Registre todos os acessos e eventos críticos, como tentativas de login falhadas e alterações de dados, para identificar comportamentos suspeitos.
+- **Auditoria de Logs**: Revise logs de atividades no sistema para detectar vulnerabilidades e tentativas de invasão.
+- **Alertas de Segurança**: Configure alertas automáticos para atividades anômalas, como múltiplas tentativas de login ou acessos não autorizados.
+
+## 5. Prevenção de Ameaças e Atualizações
+- **Firewall e IDS/IPS**: Use firewalls e sistemas de detecção e prevenção de intrusões (IDS/IPS) para proteger o sistema contra ataques externos.
+- **Atualizações e Patches**: Mantenha o sistema operacional, software e bibliotecas sempre atualizados para corrigir vulnerabilidades conhecidas.
+- **Proteção contra SQL Injection**: Utilize consultas preparadas ou ORM para evitar ataques de injeção de SQL.
+
+## 6. Proteção contra Ataques Comuns
+- **Prevenção contra XSS (Cross-Site Scripting)**: Sanitizar todas as entradas do usuário para evitar que scripts maliciosos sejam executados no navegador.
+- **Proteção contra CSRF (Cross-Site Request Forgery)**: Utilize tokens anti-CSRF para proteger formulários e requisições.
+- **Limitação de Taxa de Requisições (Rate Limiting)**: Implemente uma limitação de requisições para prevenir ataques de força bruta e DDoS.
+
+## 7. Políticas de Segurança Internas
+- **Treinamento de Usuários**: Ensine os funcionários a seguir boas práticas de segurança, como evitar phishing e usar senhas seguras.
+- **Gerenciamento de Dispositivos**: Se o sistema for acessado por dispositivos móveis ou remotamente, implemente VPNs seguras e exija dispositivos com antivírus atualizados.
+- **Acesso Mínimo Necessário**: Aplique o princípio do menor privilégio, garantindo que os usuários tenham acesso apenas ao necessário para realizar suas tarefas.
+
+## 8. Serviços Externos Seguros
+- **Segurança de APIs de Terceiros**: Garanta que as APIs usadas no sistema sigam práticas de segurança adequadas, como autenticação via OAuth2 e proteção contra abusos.
+- **Armazenamento Seguro em Nuvem**: Ao usar serviços de nuvem, certifique-se de que os dados sejam criptografados e que as permissões de acesso estejam corretamente configuradas (ex: evitar buckets abertos).
+
+## 9. Plano de Recuperação de Desastres
+- **Plano de Contingência**: Elabore um plano de recuperação em caso de desastres, que inclua backups, servidores redundantes e comunicação clara.
+- **Testes de Backup e Restauração**: Teste regularmente os backups para garantir que a restauração dos dados funcione como esperado.
+
+## 10. Segurança Física
+- **Proteção Física dos Servidores**: Garanta que os servidores estejam fisicamente protegidos contra acessos não autorizados, roubo ou desastres naturais.
+- **Segurança de Dispositivos Móveis**: Implante medidas como bloqueio remoto e criptografia para proteger dispositivos móveis que acessam o sistema.
+
 
 # 14. Manutenção e instalação
+
+Rodar o executavel
 
 # 15. Glossário
 
