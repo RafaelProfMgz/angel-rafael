@@ -758,9 +758,53 @@ A segurança é um aspecto crucial para evitar perda de dados e vazamentos em um
 
 # 14. Manutenção e instalação
 
-Rodar o executavel
+Instalação da Aplicação:
+
+Instalação no Servidor: Inicie a instalação da aplicação no servidor.
+Verificação de Dependências: Assegure-se de que todas as dependências necessárias estejam instaladas. Consulte a seção de Dependências para mais informações.
+Verificação de Logs: Após a execução da instalação, verifique os logs gerados para confirmar que o sistema está funcionando corretamente.
+
+Manutenção:
+
+Manter o sistema funcionando corretamente.
+Atualizações Frequentes: Implementar atualizações regulares para garantir a segurança e a funcionalidade da aplicação.
+Acompanhamento de Erros: Monitorar e registrar erros para correção imediata.
+Verificação de DLLs e Bibliotecas: Analisar periodicamente as DLLs e bibliotecas utilizadas, verificando se estão desatualizadas ou se foram descontinuadas.
+
+Atualização:
+
+1. Análise de Requisitos
+Necessidades do Usuário: Verifique se a nova funcionalidade atende a uma necessidade real dos usuários.
+Objetivos do Negócio: Confirme se o desenvolvimento está alinhado com os objetivos estratégicos da empresa.
+2. Avaliação Técnica
+Compatibilidade: Certifique-se de que a nova funcionalidade será compatível com o sistema existente.
+Dependências: Identifique dependências de software, bibliotecas ou serviços externos que possam afetar o desenvolvimento.
+Recursos Necessários: Verifique se há recursos suficientes (tempo, equipe, orçamento) para desenvolver e implementar a nova funcionalidade.
+3. Análise de Impacto
+Efeitos no Sistema: Avalie como a nova funcionalidade afetará o desempenho, a segurança e a usabilidade do sistema.
+Interações: Considere como a nova funcionalidade interagirá com outras partes do sistema.
+
+# 15. Treinamento
+
+Planejar um treinamento voltado para o usuario em espeifico, suporte, admin, cliente e demais usuario, criar manuais, manter a documentação do sistema
+
+# 15.1 Usuario
+
+Treinamnto para usuario, criar documentação de manuais, videos de utilização do sistema, reuniões.
+
+# 15.2 Admin
+
+Treinamento sobre regras do sistema, manutenção do sistema, documentação especializadas, reuniões por call ou presencial.
 
 # 15. Glossário
+
+**Autenticação Multifatorial (MFA)**: Método de autenticação que exige mais de uma forma de verificação para acessar um sistema.
+- **Criptografia**: Processo de codificar informações para que apenas usuários autorizados possam acessá-las.
+- **Backup**: Cópia dos dados armazenados para recuperação em caso de perda ou corrupção.
+- **Firewall**: Sistema de segurança que monitora e controla o tráfego de rede, protegendo contra acessos não autorizados.
+- **XSS (Cross-Site Scripting)**: Tipo de ataque em que scripts maliciosos são injetados em sites confiáveis.
+- **CSRF (Cross-Site Request Forgery)**: Ataque que força um usuário autenticado a realizar ações não desejadas em um aplicativo web.
+- **RBAC (Controle de Acesso Baseado em Funções)**: Método de controle de acesso que limita o que usuários podem fazer com base em suas funções.
 
 # 16. Script SQL
 
