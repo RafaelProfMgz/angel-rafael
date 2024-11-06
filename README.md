@@ -24,11 +24,11 @@ Repositório para engenhario de software modelagem de dados.
 - [14. Manutenção e instalação](#14-manutenção-e-instalação)
 - [15. Glossário](#15-glossário)
 - [16. Script SQL](#16-script-sql)
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 1. Introdução
 
 O projeto a seguir apresenta um sistema desenvolvido para um petshop. A empresa é considerada micro e iniciou as atividades recentemente. Ao possuir serviços exclusivos, os sistemas presentes no mercado não se enquadra, desta forma, os propietários decidiram desenvolver uma solução própria. Esta solução é detalhada a seguir.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 2. Problema e descrição do negócio.
 
 Descrição do cenário onde o sistema deverá funcionar.
@@ -74,7 +74,7 @@ O sistema também lida com a administração da agenda de veterinários, permiti
 Além disso, o petshop é integrado ao sistema para gerenciar a venda de produtos para os animais e a prestação de serviços complementares, como creche e cuidados temporários. O sistema fornece funcionalidades para que os clientes reservem horários futuros e acompanhem a situação do atendimento de seus animais, seja durante consultas ou em serviços como banho e tosa.
 
 A funcionalidade de RFID garante a identificação precisa dos animais, melhorando a gestão de cadastro e facilitando a recuperação de informações durante os atendimentos. Dessa forma, o sistema oferece uma solução completa, integrando a gestão clínica com as operações comerciais do petshop, visando eficiência e melhoria na experiência dos clientes e no cuidado com os animais.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 4. Diagrama ER
 
 ```mermaid
@@ -167,7 +167,7 @@ erDiagram
     PRODUTO ||--o{ ANIMAL : "utilizado_por"
     CLIENTE ||--o{ AGENDA : "faz_reserva"
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 5. Diagrama de classe
 
 ```mermaid
@@ -270,7 +270,7 @@ classDiagram
     Cliente "1" -- "n" Creche : utiliza >
     Produto "1" -- "n" Venda : é vendido em >
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 6. Casos de uso
 
 ```mermaid
@@ -311,7 +311,7 @@ graph TD;
         Cliente --> |Recebe receita| ReceberReceita
     end
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 6.1 Casos de uso
 
 @startuml
@@ -368,7 +368,7 @@ Petshop --> UC20
 UC9 --> UC11
 UC10 --> UC12
 @enduml
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 6.2 Histórias de usuário
 
 1. Cadastro de Clientes e Animais
@@ -521,7 +521,7 @@ UC10 --> UC12
     Como o proprietário da petshop,
     Eu quero garantir a segurança dos animais que ficam na creche,
     Para que os donos sintam confiança em deixar seus pets no local durante o dia.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 7. Diagrama de componentes
 
 ```mermaid
@@ -562,7 +562,7 @@ graph TD
     F -.->|Interage com| N
 
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 8. Diagrama de implantação
 
 ```mermaid
@@ -591,7 +591,7 @@ graph TD
 
     linkStyle default stroke-width:2px;
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 9 Diagrama C4
 
 ```mermaid
@@ -632,7 +632,7 @@ flowchart TB
     Veterinario -- "Realiza atendimento e cuida do animal" --> BanhoTosa
 
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 9.1 Diagrama de contexto
 ```mermaid
 %% Diagrama de Contexto
@@ -663,7 +663,7 @@ flowchart TB
     Veterinario --> Receitas
     Veterinario --> Servicos
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 9.2 Diagrama de container
 
 ```mermaid
@@ -703,7 +703,7 @@ flowchart TB
     EstoqueService --> EstoqueDB
     CrecheService --> ClienteDB
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 9.3 Diagrama de codigo
 ```mermaid
 %% Diagrama de Código
@@ -769,7 +769,7 @@ classDiagram
     Agenda --> Animal
 
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 9. Protótipo de telas
 ![image](https://github.com/user-attachments/assets/0ba60957-ac0f-4e09-aa97-8deac5cc5e0f)
 
@@ -779,7 +779,7 @@ dashboard: ![image](https://github.com/user-attachments/assets/8c7e68d6-3484-4b9
 
 graficos: ![image](https://github.com/user-attachments/assets/d1e105d6-6643-44ab-a5fe-628cfbc92c62)
 
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 10. Diagrama de navegação de telas.
 
 ```mermaid
@@ -820,7 +820,7 @@ graph TD
     ConfirmaCreche --> TelaInicial
 
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 11. Pilha tecnológica
 ```mermaid
 %% Diagrama de Pilha Tecnológica
@@ -871,12 +871,12 @@ flowchart TB
     DevOps --> Frontend
 
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 12. Requisitos de sistema
 
 Um servidor de banco para hospedar seu banco de dados, um servidor de aplicação para rodar a sua aplicação, sistema opereacional, conectividade a rede,  servidores de aplicação: PHP
 
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 13. Considerações sobre Segurança
 
 A segurança é um aspecto crucial para evitar perda de dados e vazamentos em um sistema de gestão, como o de uma clínica veterinária e petshop. Abaixo estão as práticas recomendadas para garantir a proteção do sistema e das informações sensíveis:
@@ -928,7 +928,7 @@ A segurança é um aspecto crucial para evitar perda de dados e vazamentos em um
 - **Proteção Física dos Servidores**: Garanta que os servidores estejam fisicamente protegidos contra acessos não autorizados, roubo ou desastres naturais.
 - **Segurança de Dispositivos Móveis**: Implante medidas como bloqueio remoto e criptografia para proteger dispositivos móveis que acessam o sistema.
 
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 14. Manutenção e instalação
 
 Instalação da Aplicação:
@@ -956,19 +956,19 @@ Recursos Necessários: Verifique se há recursos suficientes (tempo, equipe, or�
 3. Análise de Impacto
 Efeitos no Sistema: Avalie como a nova funcionalidade afetará o desempenho, a segurança e a usabilidade do sistema.
 Interações: Considere como a nova funcionalidade interagirá com outras partes do sistema.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 15. Treinamento
 
 Planejar um treinamento voltado para o usuario em espeifico, suporte, admin, cliente e demais usuario, criar manuais, manter a documentação do sistema
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 15.1 Usuario
 
 Treinamnto para usuario, criar documentação de manuais, videos de utilização do sistema, reuniões.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 15.2 Admin
 
 Treinamento sobre regras do sistema, manutenção do sistema, documentação especializadas, reuniões por call ou presencial.
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 15. Glossário
 
 **Autenticação Multifatorial (MFA)**: Método de autenticação que exige mais de uma forma de verificação para acessar um sistema.
@@ -980,7 +980,7 @@ Treinamento sobre regras do sistema, manutenção do sistema, documentação esp
 - **RBAC (Controle de Acesso Baseado em Funções)**: Método de controle de acesso que limita o que usuários podem fazer com base em suas funções.
 
 # 16. Script SQL
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 16.1. Comando Create table
 
 ```sql
@@ -1092,7 +1092,7 @@ CREATE TABLE Fila_Espera (
     FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE CASCADE
 );
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
 # 16.2. Comando INSERT gerando dados ficticios
 
 ```sql
@@ -1166,4 +1166,4 @@ INSERT INTO Fila_Espera (id_animal, id_agenda, status) VALUES
 (2, 2, 'aguardando'),
 (3, 3, 'em_atendimento');
 ```
-- [Voltar ao inicio](#Angel_axo)
+- [Voltar ao inicio](#1-introdução)
