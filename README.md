@@ -12,6 +12,10 @@ Repositório para engenhario de software modelagem de dados.
   - [6.1 Histórias de usuário](#61-histórias-de-usuário)
 - [7. Diagrama de componentes](#7-diagrama-de-componentes)
 - [8. Diagrama de implantação](#8-diagrama-de-implantação)
+- [9. Diagrama C4](#9-diagrama-c4)
+  - [9.1 Diagrama de contexto](#91-diagrama-de-contexto)
+  - [9.1 Diagrama de container](#92-diagrama-de-container)
+  - [9.1 Diagrama de codigo](#93-diagrama-de-codigo)
 - [9. Protótipo de telas](#9-protótipo-de-telas)
 - [10. Diagrama de navegação de telas.](#10-diagrama-de-navegação-de-telas)
 - [11. Pilha tecnológica](#11-pilha-tecnológica)
@@ -37,28 +41,29 @@ Descrição do cenário onde o sistema deverá funcionar.
 6. Os clientes devem informar o tipo de ração que o animal come.
 7. O cliente deve informar hábitos do animal.
 8. Para cada animal é possível que mais de um veterinário o atenda.
-9. Os animais podem chegar e serem atendidos de acordo com uma agenda do dia.
-10. Cada animal atendido receberá uma ficha e um prontuário.
-11. Outros dono podem querer marcar horários de atendimento futuro.
-12. O atendimento gera uma receita para o animal.
-13. Quando um cliente chega na clínica veterinária ele é atendido por um atendente.
-14. O atendente deve verificar se existe agenda disponível com um veterinário.
-15. O atendente deve colocar o cliente e seu animal na fila de espera, se for o caso.
-16. O atendente deve levar o cliente e o animal até o veterinário.
-17. O veterinário deve realizar uma entrevista com o dono do animal.
-18. O resultado da entrevista deve ir para um formulário.
-19. O veterinário deverá examinar o animal e anotar em prontuário(ficha) suas observações.
-20. Dependendo da situação do animal este receberá uma receita.
-21. A Petshop vende rações para os animais de raças: felinas, canídeas, aves, roedores.
-22. A Petshop fornece atendimento para creche de animais, onde deve ser informado horário e custo.
-23. A Petshop vende roupas e acessórios para animais.
-24. A Petshop vende produtos para banho para os animais.
-25. A Petshop vende roupas para animais.
-26. A Petshop fica localizada no centro.
-27. A Petshop deve cuidar do animal ate o dono buscar.
-28. A Petshop assumi responsabilidade pelos animais dentro do seu estabelecimento.
-29. O animal ficara em local adequado até o retorno do responsável.
-30. O valor total.
+9. Diagrama C4
+11. Os animais podem chegar e serem atendidos de acordo com uma agenda do dia.
+12. Cada animal atendido receberá uma ficha e um prontuário.
+13. Outros dono podem querer marcar horários de atendimento futuro.
+14. O atendimento gera uma receita para o animal.
+15. Quando um cliente chega na clínica veterinária ele é atendido por um atendente.
+16. O atendente deve verificar se existe agenda disponível com um veterinário.
+17. O atendente deve colocar o cliente e seu animal na fila de espera, se for o caso.
+18. O atendente deve levar o cliente e o animal até o veterinário.
+19. O veterinário deve realizar uma entrevista com o dono do animal.
+20. O resultado da entrevista deve ir para um formulário.
+21. O veterinário deverá examinar o animal e anotar em prontuário(ficha) suas observações.
+22. Dependendo da situação do animal este receberá uma receita.
+23. A Petshop vende rações para os animais de raças: felinas, canídeas, aves, roedores.
+24. A Petshop fornece atendimento para creche de animais, onde deve ser informado horário e custo.
+25. A Petshop vende roupas e acessórios para animais.
+26. A Petshop vende produtos para banho para os animais.
+27. A Petshop vende roupas para animais.
+28. A Petshop fica localizada no centro.
+29. A Petshop deve cuidar do animal ate o dono buscar.
+30. A Petshop assumi responsabilidade pelos animais dentro do seu estabelecimento.
+31. O animal ficara em local adequado até o retorno do responsável.
+32. O valor total.
 
 # 3. Visão geral do sistema
 
@@ -520,60 +525,41 @@ UC10 --> UC12
 # 7. Diagrama de componentes
 
 ```mermaid
-%% Diagrama de Componentes da Clínica Veterinária e Petshop
-componentDiagram
-    %% Componentes da Clínica Veterinária
-    component Cliente
-    component Animal
-    component Cadastro {
-        - Cliente informa dados pessoais
-        - Cliente cadastra o animal
-        - Cliente informa hábitos e condições
-        - Cliente informa tipo de ração
-    }
-    component Atendimento {
-        - Recepcionista agenda ou coloca em fila
-        - Veterinário realiza entrevista
-        - Veterinário realiza exame e preenche prontuário
-        - Atendimento gera receita
-    }
-    component Prontuário {
-        - Informações sobre o exame
-        - Observações do veterinário
-    }
-    component Receita {
-        - Medicamentos ou cuidados recomendados
-    }
-    component Agenda {
-        - Agendamentos diários
-        - Horários disponíveis para atendimento futuro
-    }
+%% Diagrama de Componentes
+graph TD
 
-    Cliente --> Cadastro : "Realiza cadastro"
-    Cliente --> Atendimento : "Solicita atendimento"
-    Atendimento --> Prontuário : "Preenche prontuário"
-    Atendimento --> Receita : "Gera receita"
-    Atendimento --> Agenda : "Consulta disponibilidade"
-    Prontuário --> Receita : "Gera receita"
+    %% Componentes Principais
+    A[Cliente] -->|Interage com| B[Cadastro de Cliente]
+    A -->|Interage com| C[Agendamento de Atendimento]
+    A -->|Interage com| F[Consulta de Ficha]
+    A -->|Interage com| G[Serviço de Banho e Tosa]
 
-    %% Componentes da Petshop
-    component Loja {
-        - Venda de rações
-        - Venda de roupas e acessórios
-        - Venda de produtos de banho
-    }
-    component Creche {
-        - Horário de entrada e saída
-        - Custo de creche
-        - Animal fica sob cuidado da Petshop
-    }
-    component LocalAcolhimento {
-        - Animal é acomodado até o retorno do dono
-    }
+    B -->|Armazena dados em| I[Banco de Dados de Clientes]
+    C -->|Armazena dados em| H[Banco de Dados de Agendamentos]
+    G -->|Armazena dados em| J[Banco de Dados de Serviços]
+
+    %% Veterinário
+    D[Veterinário] -->|Interage com| E[Atendimento e Prontuário]
+    E -->|Armazena dados em| K[Banco de Dados de Prontuários]
+    E -->|Interage com| F[Consulta de Ficha]
+    E -->|Gera| L[Receitas]
     
-    Loja --> Cliente : "Venda de produtos"
-    Creche --> Cliente : "Contratação de serviços"
-    LocalAcolhimento --> Creche : "Acolhimento dos animais"
+    %% Petshop
+    F -->|Verifica| M[Estoque de Produtos]
+    G -->|Verifica| M
+    F -->|Venda| N[Rações e Acessórios]
+    G -->|Venda| N
+    N -->|Armazena dados em| M
+    
+    %% Serviços e Banco de Dados
+    H -->|Armazena dados em| I
+    K -->|Armazena dados em| I
+    L -->|Armazena dados em| I
+
+    %% Conexões
+    B -.->|Validar Dados| C
+    E -.->|Interage com| F
+    F -.->|Interage com| N
 
 ```
 # 8. Diagrama de implantação
@@ -604,7 +590,180 @@ graph TD
 
     linkStyle default stroke-width:2px;
 ```
+# 9 Diagrama C4
 
+```mermaid
+%% Diagrama C4: Contexto do Sistema para Clínica Veterinária e Petshop
+flowchart TB
+
+    %% Atores Externos
+    Cliente[Cliente] -- "Realiza cadastro e solicita serviços" --> PetshopSistema
+    Atendente[Atendente] -- "Verifica agendamentos e realiza atendimento inicial" --> PetshopSistema
+    Veterinario[Veterinário] -- "Realiza atendimento e cuida dos animais" --> PetshopSistema
+
+    %% Sistema Principal
+    subgraph PetshopSistema["Sistema de Gestão da Clínica Veterinária e Petshop"]
+        CadastroCliente["Cadastro do Cliente e Animal"]
+        Agenda["Agendamento e Fila de Espera"]
+        FichaAnimal["Ficha e Prontuário do Animal"]
+        Receitas["Emissão de Receitas"]
+        EstoqueProdutos["Estoque de Produtos (Ração, Roupas, Acessórios)"]
+        BanhoTosa["Serviços de Banho e Tosa"]
+        Creche["Creche para Animais"]
+        Localizacao["Localização e Acomodações"]
+        Responsabilidade["Responsabilidade pelo animal no estabelecimento"]
+
+        %% Relacionamentos Internos
+        CadastroCliente --> Agenda
+        Agenda --> FichaAnimal
+        FichaAnimal --> Receitas
+        EstoqueProdutos --> BanhoTosa
+        EstoqueProdutos --> Creche
+        Creche --> Localizacao
+        Localizacao --> Responsabilidade
+    end
+
+    %% Relacionamento dos Atores com o Sistema
+    Cliente -- "Agenda serviços e consulta fichas de seu animal" --> Agenda
+    Atendente -- "Gerencia agendamentos e encaminha cliente e animal" --> Agenda
+    Veterinario -- "Atualiza ficha e emite receitas" --> FichaAnimal
+    Veterinario -- "Realiza atendimento e cuida do animal" --> BanhoTosa
+
+```
+# 9.1 Diagrama de contexto
+```mermaid
+%% Diagrama de Contexto
+flowchart TB
+
+    %% Atores Externos
+    Cliente[Cliente] -- "Realiza cadastro, solicita serviços e verifica ficha" --> SistemaGestao
+    Atendente[Atendente] -- "Gerencia agendamentos e realiza atendimento inicial" --> SistemaGestao
+    Veterinario[Veterinário] -- "Realiza atendimentos e atualiza fichas" --> SistemaGestao
+
+    %% Sistema Principal
+    subgraph SistemaGestao["Sistema de Gestão da Clínica Veterinária e Petshop"]
+        Cadastro["Módulo de Cadastro de Clientes e Animais"]
+        Agenda["Módulo de Agendamento e Fila de Espera"]
+        Prontuario["Módulo de Ficha e Prontuário do Animal"]
+        Receitas["Módulo de Emissão de Receitas"]
+        Estoque["Módulo de Estoque de Produtos"]
+        Servicos["Módulo de Banho e Tosa"]
+        Creche["Módulo de Creche para Animais"]
+        Acomodacoes["Módulo de Acomodações e Responsabilidade"]
+    end
+
+    %% Relacionamento dos Atores com o Sistema
+    Cliente -- "Acessa cadastro, agenda serviços e consulta ficha do animal" --> Cadastro
+    Cliente --> Agenda
+    Atendente --> Agenda
+    Veterinario --> Prontuario
+    Veterinario --> Receitas
+    Veterinario --> Servicos
+```
+# 9.2 Diagrama de container
+
+```mermaid
+%% Diagrama de Container
+flowchart TB
+
+    %% Containers
+    subgraph Frontend["Frontend"]
+        AplicativoCliente["Aplicativo Web do Cliente"]
+        AplicativoAtendente["Aplicativo Web do Atendente"]
+    end
+
+    subgraph Backend["Backend"]
+        CadastroService["Serviço de Cadastro"]
+        AgendaService["Serviço de Agendamento"]
+        ProntuarioService["Serviço de Prontuário"]
+        ReceitaService["Serviço de Receitas"]
+        EstoqueService["Serviço de Estoque"]
+        CrecheService["Serviço de Creche"]
+    end
+
+    subgraph Database["Banco de Dados"]
+        ClienteDB["Dados dos Clientes e Animais"]
+        ProntuarioDB["Dados de Prontuários e Receitas"]
+        EstoqueDB["Dados de Estoque"]
+    end
+
+    %% Comunicação entre Contêineres
+    AplicativoCliente --> CadastroService
+    AplicativoCliente --> AgendaService
+    AplicativoAtendente --> AgendaService
+    AplicativoAtendente --> ProntuarioService
+    CadastroService --> ClienteDB
+    AgendaService --> ProntuarioDB
+    ProntuarioService --> ProntuarioDB
+    ReceitaService --> ProntuarioDB
+    EstoqueService --> EstoqueDB
+    CrecheService --> ClienteDB
+```
+# 9.3 Diagrama de codigo
+```mermaid
+%% Diagrama de Código
+classDiagram
+
+    %% Módulo de Cadastro
+    class Cadastro {
+        +registrarCliente(cliente: Cliente)
+        +registrarAnimal(animal: Animal, cliente: Cliente)
+    }
+
+    class Cliente {
+        +nome: String
+        +contato: String
+        +animais: List<Animal>
+        +registrarCondicoes(condicoes: String)
+        +registrarRacao(tipo: String)
+        +informarHabitos(habitos: String)
+    }
+
+    class Animal {
+        +id: String
+        +nome: String
+        +especie: String
+        +historico: List<Prontuario>
+        +adicionarHistorico(prontuario: Prontuario)
+    }
+
+    %% Módulo de Prontuário
+    class Prontuario {
+        +data: Date
+        +veterinario: Veterinario
+        +observacoes: String
+        +receita: Receita
+        +gerarFicha()
+        +adicionarObservacao(obs: String)
+    }
+
+    class Receita {
+        +data: Date
+        +medicamentos: List<String>
+        +prescreverMedicamento(med: String)
+    }
+
+    class Veterinario {
+        +nome: String
+        +especialidade: String
+        +realizarAtendimento(animal: Animal, prontuario: Prontuario)
+    }
+
+    %% Módulo de Agenda
+    class Agenda {
+        +agendarAtendimento(data: Date, cliente: Cliente, animal: Animal)
+        +verificarDisponibilidade(data: Date)
+    }
+
+    Cadastro --> Cliente
+    Cliente --> Animal
+    Animal --> Prontuario
+    Prontuario --> Receita
+    Prontuario --> Veterinario
+    Agenda --> Cliente
+    Agenda --> Animal
+
+```
 # 9. Protótipo de telas
 ![image](https://github.com/user-attachments/assets/0ba60957-ac0f-4e09-aa97-8deac5cc5e0f)
 
@@ -613,6 +772,7 @@ agenda: ![image](https://github.com/user-attachments/assets/b55ebb24-25ab-48b7-8
 dashboard: ![image](https://github.com/user-attachments/assets/8c7e68d6-3484-4b95-b1ba-77b1c4481744)
 
 graficos: ![image](https://github.com/user-attachments/assets/d1e105d6-6643-44ab-a5fe-628cfbc92c62)
+
 
 # 10. Diagrama de navegação de telas.
 
@@ -655,48 +815,54 @@ graph TD
 
 ```
 # 11. Pilha tecnológica
-
 ```mermaid
-%% Diagrama da Pilha Tecnológica da Clínica Veterinária e Petshop
-graph TD
-    subgraph Front-End
-        A1[HTML5] --> A2[CSS3]
-        A2 --> A3[JavaScript]
-        A3 --> A4[React.js / Angular / Vue.js]
-        A4 --> A5[Bootstrap / Tailwind CSS]
+%% Diagrama de Pilha Tecnológica
+flowchart TB
+
+    %% Frontend
+    subgraph Frontend["Frontend"]
+        React["React"] 
+        HTML_CSS_JS["HTML, CSS, JavaScript"]
+        Redux["Redux"]
     end
 
-    subgraph Back-End
-        B1[Node.js / Express.js]
-        B2[Python / Django / Flask]
-        B3[Java / Spring Boot]
-        B1 --> API1[RESTful APIs]
-        B1 --> API2[GraphQL (opcional)]
-        B2 --> B5[Autenticação: JWT / OAuth]
-        B3 --> B6[Socket.io (Real-time updates)]
+    %% Backend
+    subgraph Backend["Backend"]
+        NodeJS["Node.js"]
+        ExpressJS["Express.js"]
+        REST_API["REST API"]
     end
 
-    subgraph Banco de Dados
-        C1[PostgreSQL / MySQL]
-        C2[MongoDB (NoSQL)]
-        C1 --> C3[ORM: Sequelize / TypeORM]
-        C2 --> C4[Mongoose]
+    %% Banco de Dados
+    subgraph Database["Banco de Dados"]
+        MongoDB["MongoDB"]
+        MySQL["MySQL"]
     end
 
-    subgraph Ferramentas Complementares
-        D1[Docker (Containerização)]
-        D2[Kubernetes (Orquestração de Containers)]
-        D3[CI/CD: Jenkins / GitHub Actions]
-        D4[Versionamento: Git / GitHub / GitLab]
-        D5[Nginx (Proxy/Server)]
-        D6[Monitoramento: Prometheus / Grafana]
+    %% DevOps e Infraestrutura
+    subgraph DevOps["DevOps e Infraestrutura"]
+        Docker["Docker"]
+        Kubernetes["Kubernetes"]
+        AWS["Amazon Web Services (AWS)"]
+        Nginx["Nginx"]
     end
 
-    subgraph Serviços Externos
-        E1[Stripe / PayPal (Pagamentos)]
-        E2[AWS S3 / Google Cloud Storage (Armazenamento de Imagens)]
-        E3[Twilio (Envio de SMS)]
+    %% Integração e Segurança
+    subgraph Integracao["Integração e Segurança"]
+        JWT["JWT (JSON Web Token)"]
+        OAuth["OAuth"]
+        WebSockets["WebSockets"]
     end
+
+    %% Conexões entre camadas
+    Frontend --> Backend
+    Backend --> Database
+    Backend --> DevOps
+    Backend --> Integracao
+    Integracao --> Frontend
+    DevOps --> Database
+    DevOps --> Frontend
+
 ```
 
 # 12. Requisitos de sistema
@@ -807,7 +973,7 @@ Treinamento sobre regras do sistema, manutenção do sistema, documentação esp
 - **RBAC (Controle de Acesso Baseado em Funções)**: Método de controle de acesso que limita o que usuários podem fazer com base em suas funções.
 
 # 16. Script SQL
-
+- [Voltar ao inicio](#1-introdução)
 # 16.1. Comando Create table
 
 ```sql
@@ -919,7 +1085,7 @@ CREATE TABLE Fila_Espera (
     FOREIGN KEY (id_agenda) REFERENCES Agenda(id_agenda) ON DELETE CASCADE
 );
 ```
-
+- [Voltar ao inicio](#1-introdução)
 # 16.2. Comando INSERT gerando dados ficticios
 
 ```sql
@@ -993,3 +1159,4 @@ INSERT INTO Fila_Espera (id_animal, id_agenda, status) VALUES
 (2, 2, 'aguardando'),
 (3, 3, 'em_atendimento');
 ```
+- [Voltar ao inicio](#1-introdução)
