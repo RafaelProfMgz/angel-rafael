@@ -272,44 +272,40 @@ classDiagram
 ```
 - [Voltar ao inicio](#1-introdução)
 # 6. Casos de uso
-
 ```mermaid
-graph TD;
-    subgraph Sistema Veterinário
-        Cliente --> |Faz cadastro| CadastroCliente
-        Cliente --> |Informa condições do animal| CondicoesAnimal
-        Cliente --> |Informa tipo de ração| TipoRacao
-        Cliente --> |Informa hábitos do animal| HabitosAnimal
-        Cliente --> |Marca horário para atendimento| MarcarHorario
-        Cliente --> |Chega na clínica| ChegadaClinica
-        Cliente --> |Realiza pagamento| RealizarPagamento
-        Atendente --> |Verifica agenda disponível| VerificarAgenda
-        Atendente --> |Coloca na fila de espera| FilaEspera
-        Atendente --> |Leva ao veterinário| LevarVeterinario
-        Veterinario --> |Realiza entrevista com dono| EntrevistaDono
-        Veterinario --> |Examina animal| ExaminarAnimal
-        Veterinario --> |Registra observações no prontuário| Prontuario
-        Veterinario --> |Emite receita| ReceitaAnimal
-        Veterinario --> |Preenche ficha do animal| FichaAnimal
-        Veterinario --> |Consulta histórico do animal| HistoricoAnimal
-        Veterinario --> |Consulta condição de saúde| CondicaoSaude
-        Veterinario --> |Consulta hábitos do animal| HabitosVeterinario
-        Petshop --> |Vende rações| VenderRacao
-        Petshop --> |Vende roupas e acessórios| VenderRoupasAcessorios
-        Petshop --> |Vende produtos para banho| VenderProdutosBanho
-        Petshop --> |Fornece atendimento para creche| AtendimentoCreche
-        Petshop --> |Cuidar do animal| CuidarAnimal
-        Petshop --> |Assume responsabilidade| ResponsabilidadePetshop
-        Cliente --> |Informa horário e custo da creche| HorarioCustoCreche
-        Cliente --> |Deixa o animal para cuidados| DeixarAnimalCuidados
-        Cliente --> |Consulta disponibilidade de produtos| ConsultarProdutos
-        Cliente --> |Marca atendimento futuro| MarcarAtendimentoFuturo
-        Cliente --> |Recebe notificação de retorno| NotificacaoRetorno
-        Cliente --> |Avalia o atendimento| AvaliarAtendimento
-        Atendente --> |Gerencia agendamentos| GerenciarAgendamentos
-        Veterinario --> |Avalia prontuário| AvaliarProntuario
-        Cliente --> |Recebe receita| ReceberReceita
-    end
+%% Diagrama de Casos de Uso
+usecaseDiagram
+    actor Cliente
+    actor Atendente
+    actor Veterinário
+    actor Petshop
+
+    Cliente --> (Cadastrar Cliente)
+    Cliente --> (Agendar Atendimento)
+    Cliente --> (Consultar Ficha)
+    Cliente --> (Informar Condições do Animal)
+    Cliente --> (Informar Hábitos do Animal)
+    Cliente --> (Informar Tipo de Ração)
+
+    Atendente --> (Verificar Agenda de Veterinário)
+    Atendente --> (Colocar Cliente na Fila de Espera)
+    Atendente --> (Acompanhar Atendimento)
+    
+    Veterinário --> (Realizar Entrevista com Cliente)
+    Veterinário --> (Examinar Animal)
+    Veterinário --> (Gerar Receita)
+    Veterinário --> (Registrar Observações no Prontuário)
+
+    Petshop --> (Vender Rações e Acessórios)
+    Petshop --> (Vender Produtos para Banho e Tosa)
+    Petshop --> (Cuidar de Animais na Creche)
+    
+    (Agendar Atendimento) .down. (Verificar Agenda de Veterinário)
+    (Cadastrar Cliente) .down. (Consultar Ficha)
+    (Realizar Entrevista com Cliente) .down. (Examinar Animal)
+    (Gerar Receita) .down. (Registrar Observações no Prontuário)
+    (Vender Rações e Acessórios) .down. (Vender Produtos para Banho e Tosa)
+
 ```
 - [Voltar ao inicio](#1-introdução)
 # 6.1 Casos de uso
